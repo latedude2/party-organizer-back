@@ -26,7 +26,7 @@ app.get('/new-code', (req, res) => {
 })
 
 app.get('/party', (req, res) => {
-  getParty(req.query.partyID)
+  getParty(parseInt(req.query.partyID))
   .then(partyData => 
     {res.send(partyData)}
   )
