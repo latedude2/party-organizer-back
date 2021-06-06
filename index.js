@@ -2,10 +2,14 @@ const express = require('express')
 const port = process.env.PORT || 5000
 const app = express();
 const cors = require('cors')
-const qs = require('querystring');
 const { MongoClient } = require("mongodb");
 var ObjectId = require('mongodb').ObjectID;
 
+
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 const uri = "mongodb+srv://admin:temp@cluster0.z7ins.mongodb.net/partydata?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
