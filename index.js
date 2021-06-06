@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/new-code', (req, res) => {
   var database = client.db("partydata");
   var collection = database.collection("parties");
-  database.uniqueIdentifierCounter.findAndModify({
+  database.parties.findAndModify({
     query: { _id: "UNIQUE COUNT DOCUMENT IDENTIFIER" },
     update: {
         $inc: { COUNT: 1 },
