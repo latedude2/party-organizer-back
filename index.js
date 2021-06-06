@@ -40,10 +40,8 @@ async function getNewCode() {
     { returnNewDocument: true },
   );
 
-  newCount = newCount.value.COUNT; 
-
   await collection.insertOne(
-    { "partyID" : newCount}
+    { "partyID" : newCount.value.COUNT}
   )
 
   return newCount;
