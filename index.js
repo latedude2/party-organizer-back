@@ -33,7 +33,7 @@ app.get('/party', (req, res) => {
 })
 
 app.post('/party', (req, res) => {
-  console.log(req)
+  console.log(req.query)
   setParty(parseInt(req.query.partyID, req.query.entries))
   .then(res.send('Update success!'))
 })
