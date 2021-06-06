@@ -38,6 +38,7 @@ app.get('/party', (req, res) => {
 
 app.post('/party', (req, res) => {
   console.log(req.body.entries)
+  console.log(typeof(req.body.entries))
   setParty(parseInt(req.body.partyID, req.body.entries))
   .then(res.send('Update success!'))
 })
