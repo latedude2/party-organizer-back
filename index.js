@@ -32,6 +32,11 @@ app.get('/party', (req, res) => {
   )
 })
 
+app.post('/party', (req, res) => {
+  setParty(parseInt(req.query.partyID, req.query.entries))
+  .then(res.send('Update success!'))
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 })
@@ -61,4 +66,17 @@ async function getParty(partyID) {
     { "partyID" : partyID}
   )
   return partyData;
+}
+
+async function setParty(partyID, entries) {
+  var database = client.db("partydata");
+  var collection = database.collection("parties");
+
+  var result = await collection.replaceOne(
+    { "partyID" : partyID},
+    { "partyID" : partyID,
+    "entries": entries},
+    true
+  )
+  return result;
 }
