@@ -27,8 +27,8 @@ app.get('/new-code', (req, res) => {
 
 app.get('/party', (req, res) => {
   getParty(req.data)
-  .then(newCount => 
-    {res.send(newCount)}
+  .then(partyData => 
+    {res.send(partyData)}
   )
 })
 
