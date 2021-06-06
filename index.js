@@ -60,6 +60,6 @@ async function getParty(partyID) {
   var partyData = await collection.findOne(
     { "partyID" : partyID}
   )
-
+  console.log(partyData)
   return partyData;
 }
