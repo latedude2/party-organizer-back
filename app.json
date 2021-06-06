@@ -1,0 +1,8 @@
+{
+  "name": "Party organizer backend",
+  "description": "",
+  "repository": "https://github.com/latedude2/party-organizer-back",
+  "logo": "",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
