@@ -54,14 +54,11 @@ async function getNewCode() {
 }
 
 async function getParty(partyID) {
-  console.log(partyID)
-  console.log(typeof(partyID))
   var database = client.db("partydata");
   var collection = database.collection("parties");
 
   var partyData = await collection.findOne(
     { "partyID" : partyID}
   )
-  console.log(partyData)
   return partyData;
 }
