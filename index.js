@@ -25,6 +25,12 @@ app.get('/new-code', (req, res) => {
   )
 })
 
+app.get('/party', (req, res) => {
+  getParty(req.data)
+  .then(newCount => 
+    {res.send(newCount)}
+  )
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
@@ -45,4 +51,15 @@ async function getNewCode() {
   )
 
   return newCount;
+}
+
+async function getParty(partyID) {
+  var database = client.db("partydata");
+  var collection = database.collection("parties");
+
+  var partyData = await collection.findOne(
+    { "partyID" : partyID}
+  )
+
+  return partyData;
 }
