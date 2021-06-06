@@ -54,6 +54,7 @@ async function getNewCode() {
 }
 
 async function getParty(partyID) {
+  console.log(partyID)
   var database = client.db("partydata");
   var collection = database.collection("parties");
 
