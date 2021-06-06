@@ -71,6 +71,8 @@ async function getParty(partyID) {
 async function setParty(partyID, entries) {
   var database = client.db("partydata");
   var collection = database.collection("parties");
+  console.log(partyID)
+  console.log(entries)
 
   var result = await collection.replaceOne(
     { "partyID" : partyID},
