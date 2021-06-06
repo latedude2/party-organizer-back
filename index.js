@@ -26,7 +26,7 @@ app.get('/new-code', (req, res) => {
 })
 
 app.get('/party', (req, res) => {
-  getParty(req.data)
+  getParty(req.query.partyID)
   .then(partyData => 
     {res.send(partyData)}
   )
@@ -58,7 +58,7 @@ async function getParty(partyID) {
   var collection = database.collection("parties");
 
   var partyData = await collection.findOne(
-    { "partyID" : 33}
+    { "partyID" : partyID}
   )
   console.log(partyData)
   return partyData;
