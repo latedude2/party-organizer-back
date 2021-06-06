@@ -38,7 +38,7 @@ async function getNewCode() {
     { "_id": ObjectId("60bc9d0846ecc762fc0e4fcd")},
     { $inc: { "COUNT": 1 } },
     { returnNewDocument: true },
-  )
+  ).value.COUNT;
 
   await collection.insertOne(
     { "partyID" : newCount}
