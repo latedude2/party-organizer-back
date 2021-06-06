@@ -19,20 +19,27 @@ app.get('/', (req, res) => {
 })
 
 app.get('/new-code', (req, res) => {
-  var database = client.db("partydata");
-  var collection = database.collection("parties");
-  collection.findAndModify({
-    query: {_id : ObjectId("60bc9d0846ecc762fc0e4fcd")},
-    update: {
-        $inc: { COUNT: 1 },
-    },
-    writeConcern: 'majority'
-  }).then(res.send('Hello World!'))
-  .error()
-
+  getNewCode()
+  .then(newCount => 
+    {res.send(newCount)}
+  )
 })
 
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 })
+
+async function getNewCode() {
+  var database = client.db("partydata");
+  var collection = database.collection("parties");
+  var newCount = await collection.findAndModify({
+    query: {_id : ObjectId("60bc9d0846ecc762fc0e4fcd")},
+    update: {
+        $inc: { COUNT: 1 },
+    },
+    writeConcern: 'majority',
+    new: true,
+  })
+  return newCount;
+}
