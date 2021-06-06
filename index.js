@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors')
 const qs = require('querystring');
 const { MongoClient } = require("mongodb");
+var ObjectId = require('mongodb').ObjectID;
 
 
 const uri = "mongodb+srv://admin:temp@cluster0.z7ins.mongodb.net/partydata?retryWrites=true&w=majority";
@@ -21,13 +22,14 @@ app.get('/new-code', (req, res) => {
   var database = client.db("partydata");
   var collection = database.collection("parties");
   collection.findAndModify({
-    query: { _id: "UNIQUE COUNT DOCUMENT IDENTIFIER" },
+    query: {_id : ObjectId("60bc9d0846ecc762fc0e4fcd")},
     update: {
         $inc: { COUNT: 1 },
     },
     writeConcern: 'majority'
-})
-  res.send('Hello World!')
+  }).then(res.send('Hello World!'))
+  .error()
+
 })
 
 
