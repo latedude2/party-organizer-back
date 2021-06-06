@@ -36,7 +36,7 @@ async function getNewCode() {
 
   var newCount = await collection.findOneAndUpdate({
     filter: {"_id" : ObjectId("60bc9d0846ecc762fc0e4fcd")},
-    update: { "$inc": { "COUNT": 1 } },
+    update: { $inc: { "COUNT": 1 } },
     returnNewDocument: true,
   })
   return newCount;
