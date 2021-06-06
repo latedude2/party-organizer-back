@@ -58,7 +58,7 @@ async function getParty(partyID) {
   var collection = database.collection("parties");
 
   var partyData = await collection.findOne(
-    { "partyID" : partyID}
+    { "partyID" : 33}
   )
   console.log(partyData)
   return partyData;
