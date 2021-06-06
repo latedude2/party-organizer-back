@@ -33,13 +33,11 @@ app.listen(port, () => {
 async function getNewCode() {
   var database = client.db("partydata");
   var collection = database.collection("parties");
-  var newCount = await collection.findAndModify({
-    query: {_id : ObjectId("60bc9d0846ecc762fc0e4fcd")},
-    update: {
-        $inc: { COUNT: 1 },
-    },
-    new: true,
-    writeConcern: 'majority',
+
+  var newCount = await collection.findOneAndUpdate({
+    filter: {_id : ObjectId("60bc9d0846ecc762fc0e4fcd")},
+    update: { $inc: { "COUNT": 1 } },
+    returnNewDocument: true,
   })
   return newCount;
 }
