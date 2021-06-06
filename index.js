@@ -38,8 +38,8 @@ async function getNewCode() {
     update: {
         $inc: { COUNT: 1 },
     },
-    writeConcern: 'majority',
     new: true,
+    writeConcern: 'majority',
   })
   return newCount;
 }
