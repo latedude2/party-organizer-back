@@ -38,10 +38,8 @@ app.get('/party', (req, res) => {
 
 app.post('/party', (req, res) => {
   var entries = req.body.entries;
-  console.log(entries)
-  console.log(typeof(entries))
-  console.log(typeof(entries[1]))
-  setParty(parseInt(req.body.partyID),entries)
+  var participants = req.body.participants;
+  setParty(parseInt(req.body.partyID), entries, participants)
   .then(res.send('Update success!'))
 })
 
@@ -62,7 +60,6 @@ async function getNewCode() {
   await collection.insertOne(
     { "partyID" : newCount.value.COUNT}
   )
-
   return newCount;
 }
 
@@ -76,16 +73,18 @@ async function getParty(partyID) {
   return partyData;
 }
 
-async function setParty(partyID, entries) {
+async function setParty(partyID, entries, participants) {
   var database = client.db("partydata");
   var collection = database.collection("parties");
   console.log(partyID)
   console.log(entries)
+  console.log(participants)
 
   var result = await collection.replaceOne(
     { "partyID" : partyID},
     { "partyID" : partyID,
-    "entries": entries},
+    "entries": entries,
+    "participants": participants},
     true
   )
   return result;
