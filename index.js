@@ -41,7 +41,9 @@ app.post('/party', (req, res) => {
   var participants = req.body.participants;
   var coorX = req.body.coorX;
   var coorY = req.body.coorY;
-  setParty(parseInt(req.body.partyID), entries, participants, coorX, coorY)
+  var startTime = req.body.startTime;
+  var endTime = req.body.endTime;
+  setParty(parseInt(req.body.partyID), entries, participants, coorX, coorY, startTime, endTime)
   .then(res.send('Update success!'))
 })
 
@@ -75,7 +77,7 @@ async function getParty(partyID) {
   return partyData;
 }
 
-async function setParty(partyID, entries, participants, coorX, coorY) {
+async function setParty(partyID, entries, participants, coorX, coorY, startTime, endTime) {
   var database = client.db("partydata");
   var collection = database.collection("parties");
   var result = await collection.replaceOne(
@@ -84,7 +86,9 @@ async function setParty(partyID, entries, participants, coorX, coorY) {
     "entries": entries,
     "participants": participants,
     "coorX" : coorX,
-    "coorY": coorY},
+    "coorY": coorY,
+    "startTime": startTime,
+    "endTime": endTime},
     true
   )
   return result;
